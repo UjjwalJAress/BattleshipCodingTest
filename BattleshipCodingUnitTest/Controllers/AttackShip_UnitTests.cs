@@ -19,12 +19,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_Hit()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.TargetHit);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.TargetHit);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 1, Y = 1 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -40,12 +39,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_Miss()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.TargetMiss);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.TargetMiss);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 0, Y = 1 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -61,12 +59,11 @@ namespace BattleshipCodingUnitTest.Services
         {
             //Arrange
             int count = 15;//suppose won in 15 counts.
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(string.Format(Constant.GameWon, count));
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(string.Format(Constant.GameWon, count));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 1, Y = 2 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -81,12 +78,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_AlreadyHit()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.TargetAlreadyHit);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.TargetAlreadyHit);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 2, Y = 1 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -101,12 +97,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_BoardNotExist()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.BoardNotExist);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.BoardNotExist);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             // Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 0, Y = 0 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -120,12 +115,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_InvalidCoordinate()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.InvalidCoordinate);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.InvalidCoordinate);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             // Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 1, Y = 1 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -139,12 +133,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_AllShipsDestroyed()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.AllShipsDestroyed);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.AllShipsDestroyed);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             // Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 1, Y = 2 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
@@ -158,12 +151,11 @@ namespace BattleshipCodingUnitTest.Services
         public void TestAttackShip_NoShipsOnBoard()
         {
             //Arrange
-            Coordinate coordinate = new Coordinate { X = 0, Y = 0 };
-            mock.Setup(p => p.Attack(coordinate)).Returns(Constant.NoShipsOnBoard);
+            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.NoShipsOnBoard);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(coordinate) as OkObjectResult;
+            var response = battleship.AttackShip(new Coordinate { X = 2, Y = 1 }) as OkObjectResult;
 
             //assert
             Assert.IsType<OkObjectResult>(response);
