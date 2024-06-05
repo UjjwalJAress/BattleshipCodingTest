@@ -75,92 +75,90 @@ namespace BattleshipCodingUnitTest.Services
         /// Verifies valid exception is thrown when target is already hitted.
         /// </summary>
         [Fact]
-        public void TestAttackShip_AlreadyHit()
+        public void TestAttackShip_AlreadyHit_Exception()
         {
             //Arrange
-            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.TargetAlreadyHit);
+            mock.Setup(x => x.Attack(It.IsAny<Coordinate>())).Throws(new Exception(Constant.TargetAlreadyHit));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(new Coordinate { X = 2, Y = 1 }) as OkObjectResult;
+            var exception = Assert.Throws<Exception>(() => battleship.AttackShip(new Coordinate { X = 2, Y = 1 }));
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.TargetAlreadyHit, response.Value);
-            Assert.Equal((int)HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.TargetAlreadyHit, exception.Message);
         }
 
         /// <summary>
         /// Verifies valid exception is thrown when board is not created.
         /// </summary>
         [Fact]
-        public void TestAttackShip_BoardNotExist()
+        public void TestAttackShip_BoardNotExist_Exception()
         {
             //Arrange
-            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.BoardNotExist);
+            mock.Setup(x => x.Attack(It.IsAny<Coordinate>())).Throws(new Exception(Constant.BoardNotExist));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
-            // Act
-            var response = battleship.AttackShip(new Coordinate { X = 0, Y = 0 }) as OkObjectResult;
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.AttackShip(new Coordinate { X = 1, Y = 2 }));
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.BoardNotExist, response.Value);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.BoardNotExist, exception.Message);
         }
 
         /// <summary>
         /// Verifies valid exception is thrown when an invalid coordinate is attacked.
         /// </summary>
         [Fact]
-        public void TestAttackShip_InvalidCoordinate()
+        public void TestAttackShip_InvalidCoordinate_Exception()
         {
             //Arrange
-            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.InvalidCoordinate);
-            BattleshipApiController battleship = new BattleshipApiController(mock.Object);
-
-            // Act
-            var response = battleship.AttackShip(new Coordinate { X = 1, Y = 1 }) as OkObjectResult;
-
-            //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.InvalidCoordinate, response.Value);
-        }
-
-        /// <summary>
-        /// Verifies valid exception is thrown all ships are destroyed.
-        /// </summary>
-        [Fact]
-        public void TestAttackShip_AllShipsDestroyed()
-        {
-            //Arrange
-            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.AllShipsDestroyed);
-            BattleshipApiController battleship = new BattleshipApiController(mock.Object);
-
-            // Act
-            var response = battleship.AttackShip(new Coordinate { X = 1, Y = 2 }) as OkObjectResult;
-
-            //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.AllShipsDestroyed, response.Value);
-        }
-
-        /// <summary>
-        /// Verifies valid exception is thrown all ships are destroyed.
-        /// </summary>
-        [Fact]
-        public void TestAttackShip_NoShipsOnBoard()
-        {
-            //Arrange
-            mock.Setup(p => p.Attack(It.IsAny<Coordinate>())).Returns(Constant.NoShipsOnBoard);
+            mock.Setup(x => x.Attack(It.IsAny<Coordinate>())).Throws(new Exception(Constant.InvalidCoordinate));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.AttackShip(new Coordinate { X = 2, Y = 1 }) as OkObjectResult;
+            var exception = Assert.Throws<Exception>(() => battleship.AttackShip(new Coordinate { X = 1, Y = 1 }));
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.NoShipsOnBoard, response.Value);
-            Assert.Equal((int)HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.InvalidCoordinate, exception.Message);
+        }
+
+        /// <summary>
+        /// Verifies valid exception is thrown all ships are destroyed.
+        /// </summary>
+        [Fact]
+        public void TestAttackShip_AllShipsDestroyed_Exception()
+        {
+            //Arrange
+            mock.Setup(x => x.Attack(It.IsAny<Coordinate>())).Throws(new Exception(Constant.AllShipsDestroyed));
+            BattleshipApiController battleship = new BattleshipApiController(mock.Object);
+
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.AttackShip(new Coordinate { X = 1, Y = 2 }));
+
+            //assert
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.AllShipsDestroyed, exception.Message);
+        }
+
+        /// <summary>
+        /// Verifies valid exception is thrown all ships are destroyed.
+        /// </summary>
+        [Fact]
+        public void TestAttackShip_NoShipsOnBoard_Exception()
+        {
+            //Arrange
+            mock.Setup(x => x.Attack(It.IsAny<Coordinate>())).Throws(new Exception(Constant.NoShipsOnBoard));
+            BattleshipApiController battleship = new BattleshipApiController(mock.Object);
+
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.AttackShip(new Coordinate { X = 4, Y = 1 }));
+
+            //assert
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.NoShipsOnBoard, exception.Message);
         }
     }
 }

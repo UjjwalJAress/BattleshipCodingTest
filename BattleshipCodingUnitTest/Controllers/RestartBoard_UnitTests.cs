@@ -34,16 +34,16 @@ namespace BattleshipCodingUnitTest.Services
         [Fact]
         public void TestRestartGame_BoardNotExist()
         {
-            //Arrange 
-            mock.Setup(p => p.RestartGame()).Returns(Constant.GameRestartError);
+            //Arrange
+            mock.Setup(x => x.RestartGame()).Throws(new Exception(Constant.BoardNotExist));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
-            // Act
-            var response = battleship.RestartGame() as OkObjectResult;
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.RestartGame());
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.GameRestartError, response.Value);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.BoardNotExist, exception.Message);
         }
     }
 }
