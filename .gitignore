@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs
+/BattleshipCodingTest/bin/Debug/net7.0
+/BattleshipCodingTest/obj
+/BattleshipCodingUnitTest/bin
+/BattleshipCodingUnitTest/obj
