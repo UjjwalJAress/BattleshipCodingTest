@@ -1,4 +1,4 @@
-# BattleshipCodingTestApplication
+# BattleshipCodingTest
 
 # I have added Documentation with .PDF file for the code at location ....\BattleShipCodingTest\Documentation\
 
