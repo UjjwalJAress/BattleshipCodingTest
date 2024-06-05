@@ -15,18 +15,18 @@ namespace BattleshipCodingUnitTest.Services
         /// Verifies valid exception is thrown when board is not created.
         /// </summary>
         [Fact]
-        public void TestPlaceShip_BoardNotExist()
+        public void TestPlaceShip_BoardNotExist_Exception()
         {
-            //Arrange 
-            mock.Setup(p => p.PlaceShip()).Returns(Constant.BoardNotExist);
+            //Arrange
+            mock.Setup(x => x.PlaceShip()).Throws(new Exception(Constant.BoardNotExist));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
-            // Act
-            var response = battleship.PlaceShip() as OkObjectResult;
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.PlaceShip());
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.BoardNotExist, response.Value);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.BoardNotExist, exception.Message);
         }
 
         /// <summary>
@@ -52,18 +52,18 @@ namespace BattleshipCodingUnitTest.Services
         /// Verifies that the ship added ships are less than 5
         /// </summary>
         [Fact]
-        public void TestPlaceShip_ShipNumberLimit()
+        public void TestPlaceShip_ShipNumberLimit_Exception()
         {
-            //Arrange 
-            mock.Setup(p => p.PlaceShip()).Returns(Constant.ShipNumberLimit);
+            //Arrange
+            mock.Setup(x => x.DisplayBoard()).Throws(new Exception(Constant.ShipNumberLimit));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
-            // Act
-            var response = battleship.PlaceShip() as OkObjectResult;
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.DisplayBoard());
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.ShipNumberLimit, response.Value);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.ShipNumberLimit, exception.Message);
         }
     }
 }

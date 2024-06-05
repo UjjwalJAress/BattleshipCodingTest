@@ -30,22 +30,19 @@ namespace BattleshipCodingUnitTest.Services
             Assert.Equal((int)HttpStatusCode.OK, response.StatusCode);
         }
 
-        ///// <summary>
-        ///// Verifies that the board is failed to create.
-        ///// </summary>
         [Fact]
-        public void TestCreateBoard_Failed()
+        public void TestCreateBoard_Failed_Exception()
         {
             //Arrange
-            mock.Setup(p => p.CreateBoard()).Returns(Constant.BoardCreationFailed);
+            mock.Setup(x => x.CreateBoard()).Throws(new Exception(Constant.BoardCreationFailed));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             //Act
-            var response = battleship.CreateBoard() as OkObjectResult;
+            var exception = Assert.Throws<Exception>(() => battleship.CreateBoard());
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.BoardCreationFailed, response.Value);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.BoardCreationFailed, exception.Message);            
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BattleshipCodingTest.Controllers;
 using BattleshipCodingTest.Interfaces;
+using BattleshipCodingTest.Models;
 using BattleshipCodingTest.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -45,18 +46,18 @@ namespace BattleshipCodingUnitTest.Services
         /// Verifies that method returns the correct message when board does not exist
         /// </summary>
         [Fact]
-        public void TestDisplayBoard_BoardNotExist()
+        public void TestDisplayBoard_BoardNotExist_Exception()
         {
-            //Arrange 
-            mock.Setup(p => p.DisplayBoard()).Returns(Constant.BoardNotExist);
+            //Arrange
+            mock.Setup(x => x.DisplayBoard()).Throws(new Exception(Constant.BoardNotExist));
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
-            // Act
-            var response = battleship.DisplayBoard() as OkObjectResult;
+            //Act
+            var exception = Assert.Throws<Exception>(() => battleship.DisplayBoard());
 
             //assert
-            Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.BoardNotExist, response.Value);
+            Assert.IsType<Exception>(exception);
+            Assert.Equal(Constant.BoardNotExist, exception.Message);
         }
     }
 }
