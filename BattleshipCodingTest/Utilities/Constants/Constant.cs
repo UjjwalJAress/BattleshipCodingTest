@@ -16,12 +16,13 @@
         public const string TargetHit = "Target Hit!";
         public const string TargetMiss = "Target Miss!";
         public const string ShipOverlap = "The ship cannot overlap with another ship.";
-        public const string ShipNumberLimit = "Ship has already been placed on the board. Only 5 ship is allowed.";
-        public const string ShipPlacedSuccessfully = "Ship placed successfully.";
+        public const string ShipNumberLimit = "You can place maximum 5 ships only!";
+        public const string ShipPlacedSuccessfully = "Ship placed successfully!";
         public const string GameRestartSuccessfully = "Game restarted Successfully, now add ship to continue futher";
         public const string BoardCreatedSuccessfully = "10 X 10 Board Created Successfully";
         public const string BoardCreationFailed = "Failed to create the board";
         public const string NoShipsOnBoard = "Ship does not exist. Please place a ship first.";
+        public const string GameRestartError = "Game not started yet!";
         public const char NoShipsSymbol = '-';
         public const char ShipSymbol = 'S';
         public const char TargetHitSymbol = 'H';

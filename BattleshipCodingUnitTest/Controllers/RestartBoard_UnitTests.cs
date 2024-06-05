@@ -35,7 +35,7 @@ namespace BattleshipCodingUnitTest.Services
         public void TestRestartGame_BoardNotExist()
         {
             //Arrange 
-            mock.Setup(p => p.RestartGame()).Returns(Constant.BoardNotExist);
+            mock.Setup(p => p.RestartGame()).Returns(Constant.GameRestartError);
             BattleshipApiController battleship = new BattleshipApiController(mock.Object);
 
             // Act
@@ -43,7 +43,7 @@ namespace BattleshipCodingUnitTest.Services
 
             //assert
             Assert.IsType<OkObjectResult>(response);
-            Assert.Equal(Constant.BoardNotExist, response.Value);
+            Assert.Equal(Constant.GameRestartError, response.Value);
         }
     }
 }
