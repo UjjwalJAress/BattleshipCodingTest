@@ -1,6 +1,6 @@
 # BattleshipCodingTestApplication
 
-# I have added Documentation with .PDF file for the code at location ....\BattleShipCodingTest\Documentation\
+# I have added Documentation with .PDF file for the code at location ....\BattleshipCodingTest/Documentation/UjjwalJ-Battleship-Code-Documentation.pdf
 
 #Function app end point:
 #Create board - https://battleship-test5.azurewebsites.net/api/BattleshipApi/CreateBoard
