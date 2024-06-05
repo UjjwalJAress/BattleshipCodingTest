@@ -54,10 +54,8 @@ namespace BattleshipCodingTest.Services
                     bool isHorizontal = random.Next(2) == 0;
                     int maxX = isHorizontal ? _board.Size : _board.Size - ship.Length + 1;
                     int maxY = isHorizontal ? _board.Size - ship.Length + 1 : _board.Size;
-
                     int startX = random.Next(maxX);
                     int startY = random.Next(maxY);
-
                     var start = new Coordinate { X = startX, Y = startY };
 
                     if (start == null || !ValidCoordinateHelper.IsValidCoordinate(_board, start))
@@ -66,7 +64,6 @@ namespace BattleshipCodingTest.Services
                     }
 
                     bool validPlacement = true;
-
                     for (int i = 0; i < ship.Length; i++)
                     {
                         if (isHorizontal && _board.Grid[start.X, start.Y + i] == Constant.ShipSymbol)

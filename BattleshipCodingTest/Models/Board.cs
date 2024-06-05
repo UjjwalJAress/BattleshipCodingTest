@@ -5,7 +5,6 @@
         public int Size { get;  set; }
         public char[,] Grid { get;  set; }
         public List<Ship> Ships { get; set; }
-
         public Board(int size)
         {
             Size = size;

@@ -1,4 +1,5 @@
 ﻿using BattleshipCodingTest.Models;
+using BattleshipCodingTest.Utilities.Constants;
 using BattleshipCodingTest.Utilities.Helpers;
 
 namespace BattleshipCodingUnitTest.Utilities.Helpers
@@ -20,8 +21,8 @@ namespace BattleshipCodingUnitTest.Utilities.Helpers
             board.Ships.Add(ship2);
 
             // Mark both ships as destroyed
-            board.Grid[0, 0] = 'H';
-            board.Grid[1, 1] = 'H';
+            board.Grid[0, 0] = Constant.TargetHitSymbol;
+            board.Grid[1, 1] = Constant.TargetHitSymbol;
 
             // Act
             var allShipsDestroyed = ShipDestroyedValidator.AreAllShipsDestroyed(board);
@@ -44,7 +45,7 @@ namespace BattleshipCodingUnitTest.Utilities.Helpers
             board.Ships.Add(ship2);
 
             // Mark only one ship as destroyed
-            board.Grid[0, 0] = 'H';
+            board.Grid[0, 0] = Constant.TargetHitSymbol;
 
             // Act
             var allShipsDestroyed = ShipDestroyedValidator.AreAllShipsDestroyed(board);
