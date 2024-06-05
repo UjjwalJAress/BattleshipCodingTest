@@ -226,7 +226,7 @@ namespace BattleshipCodingTest.Services
             }
             else
             {
-                throw new Exception(Constant.BoardNotExist);
+                throw new Exception(Constant.GameRestartError);
             }
         }
         #endregion
